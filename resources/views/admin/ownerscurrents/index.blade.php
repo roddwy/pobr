@@ -23,11 +23,12 @@
 				<table class="table table-striped">
 					<thead>
 						<th>Id</th>
-						<th>Nombres y Apellidos</th>
+						<th>Nombre y Apellido</th>
 						<th>Teléfono</th>
 						<th>Celular</th>
 						<th>Email</th>
 						<th>Disponibilidad</th>
+						<th>Cant. Inmuebles Regis.</th>
 						<th>Acción</th>
 					</thead>
 					<tbody>
@@ -39,9 +40,11 @@
 								<td>{{ $ownercurrent->cell_phone }}</td>
 								<td>{{ $ownercurrent->email }}</td>
 								<td>{{ $ownercurrent->availability }}</td>
+								<td>{{ count($ownercurrent->properties) }}</td>
 								<td>
 									<a href="{{ route('admin.ownerscurrents.edit', $ownercurrent->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
 									<a href="{{ route('admin.ownerscurrents.destroy', $ownercurrent->id) }}" onclick="return confirm('¿Seguro que deseas Eliminarlo?')" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+									<a href="{{ route('admin.properties.create', $ownercurrent->id) }}" onclick="return confirm('¿Seguro que desea Agregar un Inmueble al usuario?')"class="btn btn-info">Agregar <span class="glyphicon glyphicon-home"></span></a>
 								</td>
 							</tr>
 						@endforeach

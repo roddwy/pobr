@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [
+	'uses'	=>	'PrincipalController@index',
+	'as'	=>	'welcome'
+]);
+Route::get('detailproperty/{id}', [
+	'uses'	=>	'PrincipalController@show',
+	'as'	=>	'detailproperty'
+]);
+Route::get('search',[
+	'uses'	=>	'PrincipalController@search',
+	'as'	=>	'search'
+]);
+Route::get('sale',[
+	'uses'	=>	'PrincipalController@sale',
+	'as'	=>	'sale'
+]);
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 	Route::resource('typeusers','TypesUsersController');
 	Route::get('typeusers/{id}/destroy',[
@@ -56,6 +68,16 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 	Route::get('states/{id}/destroy',[
 		'uses'	=>	'StateController@destroy',
 		'as'	=>	'admin.states.destroy'
+	]);
+
+	Route::resource('properties', 'PropertiesController');
+	Route::get('properties/{id}/create',[
+		'uses'	=>	'PropertiesController@create',
+		'as'	=>	'admin.properties.create'
+		]);
+	Route::get('properties/{id}/destroy',[
+		'uses'	=>	'PropertiesController@destroy',
+		'as'	=>	'admin.properties.destroy'
 	]);
 });
 

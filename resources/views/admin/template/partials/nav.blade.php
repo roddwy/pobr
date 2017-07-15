@@ -20,7 +20,7 @@
         <li class="active"><a href="{{ route('admin.typesproperties.index') }}">Tipo de propiedad<span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
         <li class="active"><a href="{{ route('admin.zones.index') }}">Zonas</a></li>
-        <li class="active"><a href="#">Estado de Inmuebles</a></li>
+        <li class="active"><a href="{{ route('admin.states.index') }}">Estado de Inmuebles</a></li>
         <li class="active"><a href="{{ route('admin.ownerscurrents.index') }}">Propietarios</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Propiedades<span class="caret"></span></a>

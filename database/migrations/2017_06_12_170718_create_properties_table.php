@@ -43,7 +43,8 @@ class CreatePropertiesTable extends Migration
             $table->string('surface_area');
             $table->string('surface_builder');
             $table->string('street');
-            $table->string('maps');
+            $table->double('lat_map', 15, 8);
+            $table->double('lng_map', 15, 8);
             $table->integer('zone_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->integer('type_property_id')->unsigned();

@@ -81,9 +81,14 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StatesRequest $request, $id)
     {
-        //
+        $state = State::find($id);
+        $state->fill($request->all());
+        $state->save();
+
+        Flash::warning('Se ha Actualizado el Estado de Inmueble '.$state->name.' con exito!!!');
+        return redirect()->route('admin.states.index');
     }
 
     /**

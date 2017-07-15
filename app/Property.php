@@ -13,7 +13,7 @@ class Property extends Model
     	'piso', 'no_dpto', 'referencies', 'antiquily', 'legal_document', 'avaluo', 'delivery_time',
     	'additional_inf', 'bedrooms', 'kitchens', 'bathrooms', 'livingrooms', 'garages', 'asensors',
     	'suite', 'pantry', 'deskrooms', 'servicesrooms', 'storages', 'others', 'surface_area',
-    	'surface_builder', 'street','maps', 'zone_id', 'category_id', 'type_property_id', 'owner_current_id', 
+    	'surface_builder', 'street','lat_map','lng_map', 'zone_id', 'category_id', 'type_property_id', 'owner_current_id', 
     	'user_id', 'state_id'
     ];
 
@@ -55,5 +55,25 @@ class Property extends Model
     public function customers()
     {
     	return $this->belongsToMany('App\Customer')->withTimestamps();
+    }
+
+    public function scopeBusquedaPrecio($query, $precio)
+    {
+        return $query->where('sale_price', 'LIKE',  "%$precio%");
+    }
+
+    public function scopeBusquedaZona($query, $zona)
+    {
+        return $query->where('zone_id', 'LIKE',  "%$zona%");
+    }
+         
+    public function scopeBusquedaCategoria($query, $category)
+    {
+        return $query->where('category_id', 'LIKE',  "%$category%");
+    }
+
+    public function scopeBusquedaTipo($query, $type)
+    {
+        return $query->where('type_property_id', 'LIKE',  "%$type%");
     }
 }

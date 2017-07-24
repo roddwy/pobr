@@ -245,7 +245,7 @@
 			               <!-- <div id="cerrar">
 			                    <a href="#" class="close">Cerrar</a>
 			                </div>-->
-			                <img id="principal" height="350" width="100%" style="border:3px solid grey" src="../images/properties/{{$property->images->first()->name}}">
+			                <img id="principal" height="350px" width="100%" style="border:3px solid grey" src="../images/properties/{{$property->images->first()->name}}">
 			               <br />
 			               <div class="row">
 				               <div id="contenedor">

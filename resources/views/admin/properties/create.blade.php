@@ -26,19 +26,19 @@
 				<div class="form-group">
 					{!! Form::label('sale_price','Precio de Venta :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('sale_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de venta']) !!}
+						{!! Form::number('sale_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de venta']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('offer_price','Precio de Oferta :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('offer_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de oferta']) !!}
+						{!! Form::number('offer_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de oferta']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('comission','Comisión :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('comission',null,['class'=>'form-control','placeholder'=>'Introduzca la comisión']) !!}
+						{!! Form::number('comission',null,['class'=>'form-control','placeholder'=>'Introduzca la comisión']) !!}
 					</div>
 				</div>
 				<div class="form-group">

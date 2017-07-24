@@ -54,7 +54,7 @@
 
 		.img-principal{
 			max-height: 150px;
-			max-width: 150px;
+			width: 250px;
 		}
 		
 		section {
@@ -126,7 +126,9 @@
 		@yield('content')
 	</section>
 
-	
+	<footer>
+		@include('templatefront.partials.footer')
+	</footer>
 	
 	<script src="{{ asset('plugins/jquery/js/jquery-3.2.0.js') }}"></script>
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>

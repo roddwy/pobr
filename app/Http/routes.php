@@ -79,6 +79,38 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 		'uses'	=>	'PropertiesController@destroy',
 		'as'	=>	'admin.properties.destroy'
 	]);
+	Route::get('reports', [
+		'uses'	=>	'ReportsController@index',
+		'as'	=>	'admin.reports'
+	]);
+	Route::get('reportegeneral',[
+		'uses'	=>	'ReportsController@reportegeneral',
+		'as'	=>	'admin.reportegeneral'
+	]);
+	Route::get('reportevendido',[
+		'uses'	=>	'ReportsController@reportevendidos',
+		'as'	=>	'admin.reportevendido'
+	]);
+	Route::get('reporteactivo',[
+		'uses'	=>	'ReportsController@reporteactivos',
+		'as'	=>	'admin.reporteactivo'
+	]);
+	Route::get('reporteinactivo',[
+		'uses'	=>	'ReportsController@reporteinactivos',
+		'as'	=>	'admin.reporteinactivo'
+	]);
+	Route::get('reporteoferta',[
+		'uses'	=>	'ReportsController@reporteofertas',
+		'as'	=>	'admin.reporteoferta'
+	]);
+	Route::get('reporteusuariototal',[
+		'uses'	=>	'ReportsController@reporteusuariototal',
+		'as'	=>	'admin.reporteusuariototal'
+	]);
+	Route::get('reporteusuariovendido',[
+		'uses'	=>	'ReportsController@reporteusuariovendido',
+		'as'	=>	'admin.reporteusuariovendido'
+	]);
 });
 
 Route::get('admin/auth/login', [

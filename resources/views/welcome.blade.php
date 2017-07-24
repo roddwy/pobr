@@ -18,7 +18,7 @@
       var marcadores = <?php echo json_encode($coordenadas, JSON_PRETTY_PRINT) ?>;
       
       var map = new google.maps.Map(document.getElementById('mapa'), {
-        zoom: 13,
+        zoom: 12,
         center: new google.maps.LatLng(-16.5207007, -68.1615535),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
@@ -61,7 +61,7 @@
 <div class="row">
    @foreach($properties as $property)
         <!--@if(($property->state->name) != 'Inactivo' && ($property->state->name) !='Vendido')-->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="thumbnail">                     
                         <h3 class="text-center">{{$property->type_property->name}} en {{ $property->category->name }}</h3>
                             <h3 class="text-center">{{ $property->state->name }}</h3>

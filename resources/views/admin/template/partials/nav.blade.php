@@ -15,17 +15,19 @@
    @if(Auth::user())
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+
         <li class="active"><a href="{{ route('admin.typeusers.index') }}">Tipo Usuario</a></li>
         <li class="active"><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
         <li class="active"><a href="{{ route('admin.typesproperties.index') }}">Tipo de propiedad<span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
         <li class="active"><a href="{{ route('admin.zones.index') }}">Zonas</a></li>
         <li class="active"><a href="{{ route('admin.states.index') }}">Estado de Inmuebles</a></li>
+        <li class="active"><a href="{{ route('admin.reports') }}">Reportes</a></li>
         <li class="active"><a href="{{ route('admin.ownerscurrents.index') }}">Propietarios</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Propiedades<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Listar todos</a></li>
+            <li><a href="{{ route('admin.properties.index') }}">Listar todos</a></li>
             <li><a href="#">Listar por categorias</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Listar por tipo</a></li>

@@ -22,7 +22,12 @@ class PrincipalController extends Controller
      */
     public function index()
     {
-        $properties = Property::orderBy('id','DESC')->paginate(3);
+        $states = State::where('name','vendido')->orWhere('name','inactivo')->get();
+        $statesid = array();
+        foreach ($states as $state) {
+            $statesid[] = array('state_id'=>$state->id);
+        }
+        $properties = Property::where('state_id','<>',$statesid[0])->where('state_id','<>',$statesid[1])->orderBy('id','DESC')->paginate(6);
         $coordenadas = array();
         foreach ($properties as $property) {
             $coordenadas[]= array('lat'=>$property->lat_map,'lng'=>$property->lng_map,'tipo'=>$property->type_property->name.' en '.$property->category->name,'image'=>$property->images->first()->name, 'idproperty'=>$property->id);

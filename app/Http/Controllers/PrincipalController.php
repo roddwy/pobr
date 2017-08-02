@@ -32,9 +32,12 @@ class PrincipalController extends Controller
         foreach ($properties as $property) {
             $coordenadas[]= array('lat'=>$property->lat_map,'lng'=>$property->lng_map,'tipo'=>$property->type_property->name.' en '.$property->category->name,'image'=>$property->images->first()->name, 'idproperty'=>$property->id);
         }
-        //dd($coordenadas);
+        foreach ($properties as $property) {
+            $coordenadasclusters[]= array('lat'=>$property->lat_map,'lng'=>$property->lng_map);
+        }
+        //dd($coordenadasclusters);
         //dd($properties);
-        return view('welcome')->with('properties',$properties)->with('coordenadas',$coordenadas);
+        return view('welcome')->with('properties',$properties)->with('coordenadas',$coordenadas)->with('coordenadasclusters',$coordenadasclusters);
     }
 
     /**
@@ -50,8 +53,8 @@ class PrincipalController extends Controller
         //dd($statesid);
 
        $properties = Property::where('state_id','<>',$statesid[0])->where('state_id','<>',$statesid[1])
-                    ->BusquedaPrecio($request->sale_price)->BusquedaZona($request->zone_id)->BusquedaCategoria($request->category_id)
-                    ->BusquedaTipo($request->type_property_id)->orderBy('id', 'DESC')->paginate(3);
+                    ->BusquedaPrecio2($request->sale_price,$request->sale_price2)->BusquedaZona($request->zone_id)->BusquedaCategoria($request->category_id)
+                    ->BusquedaTipo($request->type_property_id)->orderBy('sale_price', 'ASC')->paginate(4);
        //$properties = property::all();
        //dd($properties);
        

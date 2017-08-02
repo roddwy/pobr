@@ -875,7 +875,7 @@ class ReportsController extends Controller
                     
                     $sheet->fromModel($properties, null, 'B8', false, false);
                     $preciosventas= Property::join('states','states.id','=','properties.state_id')->select('sale_price','offer_price','comission')
-                    ->where('properties.user_id','=',$usuario->id)->get();
+                    ->where('properties.user_id','=',$usuario->id)->where('states.name','=','vendido')->get();
                         $total = 0;
                         $totalofertas = 0;
                         $totalcomisones = 0;
@@ -916,6 +916,11 @@ class ReportsController extends Controller
                 });
             }
         })->download('xls');
+    }
+
+    public function reporteclientes()
+    {
+        dd('REPORTES CLIENTE');
     }
     /**
      * Show the form for creating a new resource.

@@ -2,27 +2,47 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="_token" content="{!! csrf_token() !!}" />
 	<title>@yield('title', 'Detalles') | ORION BIENES RAICES</title>
 	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">	
 	<script src="{{ asset('plugins/jquery/js/jquery-3.2.0.js') }}"></script>
+	<!--SCRIPT PRUEBAS-->
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<!--FIN DE SCRIPT PRUEBAS-->
 	<style>
 		body{
-    		background-color: #EBE6E7;
+    		background-color: #BECEBB;
+		}
+		h1{
+			color:#fff;
+			margin-top:10px;
+			margin-bottom: 10px;
+			font-family: 'Anton', sans-serif;			
 		}
 		.linavbar{
 			font-family: 'Fjalla One', sans-serif;
 			font-size: 20px;
 		}
 		.titulonavbar{
-			font-family: 'Anton', sans-serif;
+			font-family: Elephant;
+			color: #BECEBB;
 			font-size: 30px;
 
 		}
 		.navbar{
 			margin-bottom: 5px;
-			background-color: #BB1F35;
+			/*background-color: #BB1F35;*/
+			background: -webkit-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* For Opera 11.1 to 12.0 */
+			  background: -o-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* For Fx 3.6 to 15 */
+			  background: -moz-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* Standard syntax */
+			  background: linear-gradient(to right,#0981C0,indigo,#B00C7C); 
+
 		}
 		.navbar-form{
 			background: #BB1F35;
@@ -112,7 +132,7 @@
 		#principal{
 			cursor: pointer;
 		}
-		.modal{
+		.modal_galeria{
 			position: fixed;
 			width: 100%;
 			height: 100vh;
@@ -140,7 +160,7 @@
 			cursor: pointer;
 			position: absolute;
 			right: 10px;
-			top: 10px;
+			top: 60px;
 		}
 		/*FIN VISOR DE IMAGENES*/
 		#map{
@@ -154,7 +174,15 @@
 			height: 450px;
 		}
 		footer{
-			background: white;
+			 margin-top: 20px;
+             /* For Safari 5.1 to 6.0 */
+			  background: -webkit-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* For Opera 11.1 to 12.0 */
+			  background: -o-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* For Fx 3.6 to 15 */
+			  background: -moz-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  /* Standard syntax */
+			  background: linear-gradient(to right,#0981C0,indigo,#B00C7C); 
 		}
 	</style>
 	<script>
@@ -200,7 +228,7 @@
 		  });
 
 		});
-	</script>
+	</script>	
 </head>
 <body>
 	<header>
@@ -210,8 +238,8 @@
 
 	<div class="panel panel-default">
 	  <div class="panel-heading">Detalle del Inmueble</div>
-	  <div class="panel-body">
-	  	<div class="row row-detalle">
+	  <div class="panel-body">	  	
+	  	<div class="row row-detalle">	  		
 	  		<div class="col-md-6">
 		  		<ul class="list-group">
 				  <li class="list-group-item detalle"><strong>Id </strong>{{$property->id}}</li>
@@ -227,7 +255,87 @@
 				</ul>
 			</div>
 	  	</div>
-	  	
+	  	<button type="button" class="btn btn-info" id="add">Contactarse</button>
+	  	@include('newCustomer')
+
+		<!--MENSAJE MODAL-->
+	  	<div class="modal fade" id="Success" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Exito!!!!!!</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>Muchas gracias por registrar sus datos espere a que nos contactemos con Usted.</p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+  		</div>	 
+		<!--END MENSAJE MODAL-->
+	  	<script type="text/javascript">
+	  		$.ajaxSetup({
+	  			headers: {
+	  				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	  			}
+	  		})
+
+	    	$('#add').on('click',function(){
+	    		$('#buscador').modal('show');
+	    	})
+	    	$('#frmCustomer').on('submit',function(e){
+	    		e.preventDefault();
+	    		var form = $('#frmCustomer');
+	    		var formData = form.serialize();
+	    		var url = form.attr('action');
+	    		$.ajax({
+	    			type  : 'post',
+	    			url   : url,
+	    			data  : formData,
+	    			async : true,
+	    			dataType:'json',
+	    			success:function(data){
+	    				console.log(data);
+	    				$('#frmCustomer').trigger('reset');
+	    				$('#first_name').focus();
+	    				//$('.modal-dialog').remove();
+	    				//$('#myModal').modal('show');	    					
+	    				$('#customer').modal('hide'); // or $('#customer').modal('toggle') 
+						$('#Success').modal('show');
+	    			} 
+	    		});
+	    	})
+
+	    	$('#frmEditCustomer').on('submit',function(e){
+	    		e.preventDefault();
+	    		var form = $('#frmEditCustomer');
+	    		var formData = form.serialize();
+	    		var url = form.attr('action');
+	    		$.ajax({
+	    			type  : 'post',
+	    			url   : url,
+	    			data  : formData,
+	    			async : true,
+	    			dataType:'json',
+	    			success:function(data){
+	    				console.log(data);
+	    				$('#frmEditCustomer').trigger('reset');
+	    				$('#first_name').focus();
+	    				//$('.modal-dialog').remove();
+	    				//$('#myModal').modal('show');	    					
+	    				$('#existcustomer').modal('hide'); // or $('#customer').modal('toggle') 
+						$('#Success').modal('show');
+	    			} 
+	    		});
+	    	})
+	    </script>
+	    	
 	  </div>
 	</div>
 	
@@ -259,15 +367,15 @@
 				            <script>
 				            	$('#principal').click(function(e){
 				            		var img = e.target.src;
-				            		var modal = '<div class="modal" id="modal"><img src="' + img + '" class="modal_img"><div class="modal_boton" id="modal_boton">X</div></div>';
+				            		var modal = '<div class="modal_galeria" id="modal_galeria"><img src="' + img + '" class="modal_img"><div class="modal_boton" id="modal_boton">X</div></div>';
 				            		$('body').append(modal);
 				            		$('#modal_boton').click(function(){
-				            			$('#modal').remove();
+				            			$('#modal_galeria').remove();
 				            		})
 				            	});
 				            	$(document).keyup(function(e){
 				            		if (e.which==27) {
-				            			$('#modal').remove();
+				            			$('#modal_galeria').remove();
 				            		}
 				            	})
 				            </script>
@@ -299,11 +407,13 @@
 				    </script>			    
 			    </div>
 			</div>
-		</div>
+		</div>		
     </div>
 	<footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+		<div class="text-center">
+			<p class="pull-right"><a href="#">Back to top</a></p>
+        	<p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+		</div>        
 	</footer>
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
 	

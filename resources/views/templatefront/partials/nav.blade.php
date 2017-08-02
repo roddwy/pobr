@@ -16,7 +16,7 @@
         <li class="linavbar"><a href="{{ route('search') }}">Busqueda <span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
         <li class="linavbar"><a href="{{ route('sale') }}">Oferta <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
         <li class="linavbar"><a href="#">Nosotros <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-        <li class="linavbar"><a href="#">Contacto <span class="glyphicon glyphicon-phone" aria-hidden="true"></span></a></li>
+        <li class="linavbar"><a href="{{ route('customers') }}">Contacto <span class="glyphicon glyphicon-phone" aria-hidden="true"></span></a></li>
       </ul>
     </div>
   </div>  

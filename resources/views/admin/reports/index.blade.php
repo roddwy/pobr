@@ -98,4 +98,17 @@
 			  </div>					
 		</div>
 </div>
+<div class="panel panel-default">
+		<div class="panel-heading">REPORTES CLIENTES EXCEL</div>
+		<div class="panel-body">
+
+			{!! Form::model(Request::all(),['route'=>'admin.reporteclientes', 'method'=>'GET', 'class'=>'navbar-form']) !!}
+					<div class="form-group">
+						{!! Form::label('Fecha', 'Seleccione Fecha') !!}					
+							<input type="month" name="date" step="1" min="2016-12" max="2020-12" value="2017-01" class="form-control" >						
+						<button type="submit" class="btn btn-default">Exportar clientes interesados</button>
+					</div>	
+			{!! Form::close() !!}						
+		</div>
+</div>
 @endsection

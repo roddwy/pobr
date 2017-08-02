@@ -76,4 +76,12 @@ class Property extends Model
     {
         return $query->where('type_property_id', 'LIKE',  "%$type%");
     }
+    public function scopeBusquedaPrecio2($query, $precio1, $precio2)
+    {
+        if($precio1 == '' && $precio2=='')
+        {
+            return $query->whereBetween('sale_price', ['1', '1000000000']);
+        }
+        return $query->whereBetween('sale_price', [$precio1, $precio2]);
+    }
 }

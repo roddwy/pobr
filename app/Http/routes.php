@@ -27,6 +27,19 @@ Route::get('sale',[
 	'uses'	=>	'PrincipalController@sale',
 	'as'	=>	'sale'
 ]);
+Route::get('customers',[
+		'uses'	=>	'CustomersController@create',
+		'as'	=>	'customers'
+]);
+Route::post('customercreate',[
+		'uses'	=>	'CustomersController@store',
+		'as'	=>	'customercreate'
+]);
+Route::post('newCustomer','CustomersController@newCustomer');
+Route::post('editCustomer','CustomersController@editCustomer');
+Route::get('buscadorCustomer',array('as'=>'buscadorCustomer', 'uses'=>'CustomersController@buscadorCustomer'));
+
+
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 	Route::resource('typeusers','TypesUsersController');
 	Route::get('typeusers/{id}/destroy',[
@@ -110,6 +123,10 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 	Route::get('reporteusuariovendido',[
 		'uses'	=>	'ReportsController@reporteusuariovendido',
 		'as'	=>	'admin.reporteusuariovendido'
+	]);
+	Route::get('reporteclientes',[
+		'uses'	=>	'ReportsController@reporteclientes',
+		'as'	=>	'admin.reporteclientes'
 	]);
 });
 

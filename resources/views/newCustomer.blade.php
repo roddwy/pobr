@@ -10,7 +10,7 @@
 		        </div>
 		        <div class="modal-body">
 		          <header class="panel-heading">
-		        		<input type="text" name="searchcell[]" class="form-control" id="searchcell" placeholder="Buscar por Nro Celular">
+		        		<input type="number" title="Introduzca solo numeros con 8 digitos" name="searchcell[]" class="form-control" id="searchcell" placeholder="Buscar por Nro Celular" required/>
 		          </header>
 		        </div>
 		        <div class="modal-footer">
@@ -32,6 +32,9 @@
 		          <h4 class="modal-title">CONTACTO</h4>
 		        </div>
 		        <div class="modal-body">
+		        	<div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+		        		<strong id="msj"></strong>
+		        	</div>
 		        	<!--BUSCADOR-->
 		        	<!--<header class="panel-heading">
 		        		<input type="text" name="searchcell[]" class="form-control" id="searchcell" placeholder="Buscar por Nro Celular">
@@ -42,31 +45,31 @@
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Nombres</label>
-		          				<input type="text" name="first_name" id="first_name" placeholder="Nombres">
+		          				<input type="text" name="first_name" id="first_name" placeholder="Nombres" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Apellidos</label>
-		          				<input type="text" name="last_name" id="last_name" placeholder="Apellidos">
+		          				<input type="text" name="last_name" id="last_name" placeholder="Apellidos" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Teléfono</label>
-		          				<input type="text" name="phone" id="phone" placeholder="Teléfono">
+		          				<input type="tel" name="phone" title="Debe contener 7 digitos y el primer digito debe empezar por 2, 3 o 4" id="phone" placeholder="Teléfono" pattern="^[2|3|4][0-9]{6}" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>celular</label>
-		          				<input type="text" name="cell_phone" id="cell_phone" placeholder="Nro Celular">
+		          				<input type="tel" name="cell_phone" title="Debe contener 8 digitos y el primer digito debe empezar por 6 o 7" id="cell_phone" placeholder="Nro Celular" pattern="^[7|6][0-9]{7}" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Email</label>
-		          				<input type="text" name="email" id="email" placeholder="Email">
+		          				<input type="email" title="Ejemplo:  ejemplo@ejemplo.com"name="email" id="email" placeholder="Email" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
@@ -107,37 +110,37 @@
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Id</label>
-		          				<input type="text" name="id" id="existid" placeholder="Id">
+		          				<input type="text" name="id" id="existid" placeholder="Id" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Nombres</label>
-		          				<input type="text" name="first_name" id="existfirst_name" placeholder="Nombres">
+		          				<input type="text" name="first_name" id="existfirst_name" placeholder="Nombres" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Apellidos</label>
-		          				<input type="text" name="last_name" id="existlast_name" placeholder="Apellidos">
+		          				<input type="text" name="last_name" id="existlast_name" placeholder="Apellidos" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Teléfono</label>
-		          				<input type="text" name="phone" id="existphone" placeholder="Teléfono">
+		          				<input type="tel" title="Debe ser numeros de 7 digitos" name="phone" id="existphone" placeholder="Teléfono" pattern="[0-9]{7}" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>celular</label>
-		          				<input type="text" name="cell_phone" id="existcell_phone" placeholder="Nro Celular">
+		          				<input type="tel" title="Debe ser numeros de 8 digitos" name="cell_phone" id="existcell_phone" placeholder="Nro Celular" pattern="[0-9]{8}" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Email</label>
-		          				<input type="text" name="email" id="existemail" placeholder="Email">
+		          				<input type="email" name="email" id="existemail" placeholder="Email" required/>
 		          			</div>		          			
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">

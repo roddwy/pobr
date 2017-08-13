@@ -25,7 +25,7 @@ class PropertiesController extends Controller
      */
     public function index()
     {
-        $properties = Property::orderBy('id','DESC')->paginate(2);
+        $properties = Property::orderBy('id','DESC')->paginate(10);
         return view('admin.properties.index')->with('properties',$properties);
     }
 

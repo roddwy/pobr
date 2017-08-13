@@ -14,6 +14,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use DB;
 use Carbon\Carbon;
 use PHPExcel_Worksheet_Drawing;
+use PDF;
+use Khill\Lavacharts\Lavacharts;
 
 class ReportsController extends Controller
 {
@@ -22,9 +24,54 @@ class ReportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getGraphGeneral()
     {
-        return view('admin.reports.index');
+        /*PRIMER GRAFICO*/
+        $lava = new Lavacharts;
+        $graphic = $lava->DataTable();
+        $graphic->addDateColumn('Month');
+        $graphic->addNumberColumn('Propiedades');
+        $properties = Property::select(DB::raw('Month(admission_date) AS mes'),DB::raw('count(*) as total'))
+                                        ->groupBy('mes')
+                                        ->orderBy('mes', 'ASC')
+                                        ->get();
+         foreach ($properties as $key => $property) {
+                  $graphic->addRow(['2017-'.$property->mes, $property->total]);    
+         }        
+        $lava->LineChart("Notasgrap", $graphic,['title'=> 'INMUEBLES REGISTRADOS POR CADA MES']);
+        /*END PRIMER GRAFICO*/
+        return $lava;
+    }
+    public function getGraphPie()
+    {
+        $users = User::all();
+        $lava = new Lavacharts; // See note below for Laravel
+
+        $reasons = $lava->DataTable();
+
+        $reasons->addStringColumn('Reasons')
+            ->addNumberColumn('Percen');
+        foreach ($users as $key => $user) {
+            $properties = Property::where('user_id','=',$user->id)->get();
+            $reasons->addRow([$user->first_name,count($properties)]);
+        }
+            // ->addRow(['Check Reviews', 15])
+            // ->addRow(['Watch Trailers', 5])
+            // ->addRow(['See Actors Other Work', 25])
+            // ->addRow(['Settle Argument', 55]);
+
+        $lava->PieChart('IMDB', $reasons, [
+            'title' => 'TOTAL REGISTRO POR USUARIO',
+            'is3D' => true
+        ]);
+        return $lava;
+    }
+    public function index()
+    {  
+        $graphGeneral = self::getGraphGeneral();
+        $graphPie = self::getGraphPie();
+        
+        return view('admin.reports.index',compact('graphPie'));
     }
 
     public function reportegeneral(Request $request)
@@ -151,7 +198,41 @@ class ReportsController extends Controller
         })->download('xlsx');
 
     }
+    /*REPORTE GENRAL PDF*/
+    public function reportegeneralpdf(Request $request)
+    {
+        $date = $request->date;
+        $datebus = new Carbon($date);
+        $datoexacto = $datebus->format('y-m'); 
 
+        $properties = Property::join('zones', 'zones.id', '=', 'properties.zone_id')
+            ->join('users', 'users.id', '=', 'properties.user_id')
+            ->join('owners_currents', 'owners_currents.id', '=', 'properties.owner_current_id')
+            ->join('categories', 'categories.id','=','properties.category_id')
+            ->join('types_properties', 'types_properties.id','=','properties.type_property_id')
+            ->join('states','states.id','=','properties.state_id')
+            ->select('properties.id','properties.admission_date','zones.name as nombrezona','properties.street','categories.name as nombrecategoria',
+                    'types_properties.name as nombretipo','owners_currents.first_name as nombreprop','owners_currents.last_name as apellidoprop',
+                    'owners_currents.phone','owners_currents.cell_phone','states.name','properties.sale_price','properties.offer_price','properties.comission')
+            ->where('properties.admission_date','LIKE','%'.$datoexacto.'%')->get();
+        $totales = $properties;
+        $total = 0;
+        $totalofertas = 0;
+        $totalcomisones = 0;
+        foreach ($totales as $precio) {
+            $total = $total+$precio->sale_price;
+            $totalofertas = $totalofertas+$precio->offer_price;
+            $totalcomisones = $totalcomisones+$precio->comission;
+        }
+        $total= number_format($total,2);
+        $totalofertas = number_format($totalofertas,2);
+        $totalcomisones = number_format($totalcomisones,2);
+        $usuario = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+            //dd($properties);
+        $pdf = PDF::loadView('admin.pdf.pdftotal',['properties'=>$properties,'date'=>$datoexacto,'user'=>$usuario,'total'=>$total,'totalofertas'=>$totalofertas,'totalcomisones'=>$totalcomisones]);
+        return $pdf->stream('Reporte Total.pdf');
+    }
+    /*END REPORTE GENERAL PDF*/
     public function reportevendidos(Request $request)
     {
         $date = $request->date;
@@ -276,7 +357,41 @@ class ReportsController extends Controller
         })->download('xlsx');
 
     }
+    /*REPORTES VENDIDOS PDF*/
+    public function reportevendidospdf(Request $request)
+    {
+        $date = $request->date;
+        $datebus = new Carbon($date);
+        $datoexacto = $datebus->format('y-m'); 
 
+        $properties = Property::join('zones', 'zones.id', '=', 'properties.zone_id')
+            ->join('users', 'users.id', '=', 'properties.user_id')
+            ->join('owners_currents', 'owners_currents.id', '=', 'properties.owner_current_id')
+            ->join('categories', 'categories.id','=','properties.category_id')
+            ->join('types_properties', 'types_properties.id','=','properties.type_property_id')
+            ->join('states','states.id','=','properties.state_id')
+            ->select('properties.id','properties.admission_date','zones.name as nombrezona','properties.street','categories.name as nombrecategoria',
+                    'types_properties.name as nombretipo','owners_currents.first_name as nombreprop','owners_currents.last_name as apellidoprop',
+                    'owners_currents.phone','owners_currents.cell_phone','states.name','properties.sale_price','properties.offer_price','properties.comission')
+            ->where('states.name','=','Vendido')->where('properties.admission_date','LIKE','%'.$datoexacto.'%')->get();
+        $totales = $properties;
+        $total = 0;
+        $totalofertas = 0;
+        $totalcomisones = 0;
+        foreach ($totales as $precio) {
+            $total = $total+$precio->sale_price;
+            $totalofertas = $totalofertas+$precio->offer_price;
+            $totalcomisones = $totalcomisones+$precio->comission;
+        }
+        $total= number_format($total,2);
+        $totalofertas = number_format($totalofertas,2);
+        $totalcomisones = number_format($totalcomisones,2);
+        $usuario = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+            //dd($properties);
+        $pdf = PDF::loadView('admin.pdf.pdfvendidos',['properties'=>$properties,'date'=>$datoexacto,'user'=>$usuario,'total'=>$total,'totalofertas'=>$totalofertas,'totalcomisones'=>$totalcomisones]);
+        return $pdf->stream('Reporte Vendidos.pdf');
+    }
+    /*END REPORTES VENDIDOS PDF*/
     public function reporteactivos(Request $request)
     {
        $date = $request->date;
@@ -400,7 +515,41 @@ class ReportsController extends Controller
             });
         })->download('xlsx');
     }
+    /*REPORTE ACTIVOS PDF*/
+    public function reporteactivospdf(Request $request)
+    {
+       $date = $request->date;
+        $datebus = new Carbon($date);
+        $datoexacto = $datebus->format('y-m'); 
 
+        $properties = Property::join('zones', 'zones.id', '=', 'properties.zone_id')
+            ->join('users', 'users.id', '=', 'properties.user_id')
+            ->join('owners_currents', 'owners_currents.id', '=', 'properties.owner_current_id')
+            ->join('categories', 'categories.id','=','properties.category_id')
+            ->join('types_properties', 'types_properties.id','=','properties.type_property_id')
+            ->join('states','states.id','=','properties.state_id')
+            ->select('properties.id','properties.admission_date','zones.name as nombrezona','properties.street','categories.name as nombrecategoria',
+                    'types_properties.name as nombretipo','owners_currents.first_name as nombreprop','owners_currents.last_name as apellidoprop',
+                    'owners_currents.phone','owners_currents.cell_phone','states.name','properties.sale_price','properties.offer_price','properties.comission')
+            ->where('states.name','=','Activo')->where('properties.admission_date','LIKE','%'.$datoexacto.'%')->get();
+        $totales = $properties;
+        $total = 0;
+        $totalofertas = 0;
+        $totalcomisones = 0;
+        foreach ($totales as $precio) {
+            $total = $total+$precio->sale_price;
+            $totalofertas = $totalofertas+$precio->offer_price;
+            $totalcomisones = $totalcomisones+$precio->comission;
+        }
+        $total= number_format($total,2);
+        $totalofertas = number_format($totalofertas,2);
+        $totalcomisones = number_format($totalcomisones,2);
+        $usuario = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+            //dd($properties);
+        $pdf = PDF::loadView('admin.pdf.pdfactivos',['properties'=>$properties,'date'=>$datoexacto,'user'=>$usuario,'total'=>$total,'totalofertas'=>$totalofertas,'totalcomisones'=>$totalcomisones]);
+        return $pdf->stream('Reporte Vendidos.pdf');
+    }
+    /*END REPORTE ACTIVOS PDF*/
     public function reporteinactivos(Request $request)
     {
         $date = $request->date;
@@ -524,7 +673,41 @@ class ReportsController extends Controller
             });
         })->download('xlsx');
     }
+    /*REPORTES INACTIVOS PDF*/
+    public function reporteinactivospdf(Request $request)
+    {
+        $date = $request->date;
+        $datebus = new Carbon($date);
+        $datoexacto = $datebus->format('y-m'); 
 
+        $properties = Property::join('zones', 'zones.id', '=', 'properties.zone_id')
+            ->join('users', 'users.id', '=', 'properties.user_id')
+            ->join('owners_currents', 'owners_currents.id', '=', 'properties.owner_current_id')
+            ->join('categories', 'categories.id','=','properties.category_id')
+            ->join('types_properties', 'types_properties.id','=','properties.type_property_id')
+            ->join('states','states.id','=','properties.state_id')
+            ->select('properties.id','properties.admission_date','zones.name as nombrezona','properties.street','categories.name as nombrecategoria',
+                    'types_properties.name as nombretipo','owners_currents.first_name as nombreprop','owners_currents.last_name as apellidoprop',
+                    'owners_currents.phone','owners_currents.cell_phone','states.name','properties.sale_price','properties.offer_price','properties.comission')
+            ->where('states.name','=','Inactivo')->where('properties.admission_date','LIKE','%'.$datoexacto.'%')->get();
+        $totales = $properties;
+        $total = 0;
+        $totalofertas = 0;
+        $totalcomisones = 0;
+        foreach ($totales as $precio) {
+            $total = $total+$precio->sale_price;
+            $totalofertas = $totalofertas+$precio->offer_price;
+            $totalcomisones = $totalcomisones+$precio->comission;
+        }
+        $total= number_format($total,2);
+        $totalofertas = number_format($totalofertas,2);
+        $totalcomisones = number_format($totalcomisones,2);
+        $usuario = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+            //dd($properties);
+        $pdf = PDF::loadView('admin.pdf.pdfinactivos',['properties'=>$properties,'date'=>$datoexacto,'user'=>$usuario,'total'=>$total,'totalofertas'=>$totalofertas,'totalcomisones'=>$totalcomisones]);
+        return $pdf->stream('Reporte Inactivos.pdf');
+    }
+    /*END REPORTES INACTIVOS PDF*/
     public function reporteofertas(Request $request)
     {
         $date = $request->date;
@@ -648,6 +831,41 @@ class ReportsController extends Controller
             });
         })->download('xlsx');
     }
+    /*REPORTES OFERTAS PDF*/
+    public function reporteofertaspdf(Request $request)
+    {
+        $date = $request->date;
+        $datebus = new Carbon($date);
+        $datoexacto = $datebus->format('y-m'); 
+
+        $properties = Property::join('zones', 'zones.id', '=', 'properties.zone_id')
+            ->join('users', 'users.id', '=', 'properties.user_id')
+            ->join('owners_currents', 'owners_currents.id', '=', 'properties.owner_current_id')
+            ->join('categories', 'categories.id','=','properties.category_id')
+            ->join('types_properties', 'types_properties.id','=','properties.type_property_id')
+            ->join('states','states.id','=','properties.state_id')
+            ->select('properties.id','properties.admission_date','zones.name as nombrezona','properties.street','categories.name as nombrecategoria',
+                    'types_properties.name as nombretipo','owners_currents.first_name as nombreprop','owners_currents.last_name as apellidoprop',
+                    'owners_currents.phone','owners_currents.cell_phone','states.name','properties.sale_price','properties.offer_price','properties.comission')
+            ->where('states.name','=','Oferta')->where('properties.admission_date','LIKE','%'.$datoexacto.'%')->get();
+            //dd($properties);
+        $totales = $properties;
+        $total = 0;
+        $totalofertas = 0;
+        $totalcomisones = 0;
+        foreach ($totales as $precio) {
+            $total = $total+$precio->sale_price;
+            $totalofertas = $totalofertas+$precio->offer_price;
+            $totalcomisones = $totalcomisones+$precio->comission;
+        }
+        $total= number_format($total,2);
+        $totalofertas = number_format($totalofertas,2);
+        $totalcomisones = number_format($totalcomisones,2);
+        $usuario = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+        $pdf = PDF::loadView('admin.pdf.pdfofertas',['properties'=>$properties,'date'=>$datoexacto,'user'=>$usuario,'total'=>$total,'totalofertas'=>$totalofertas,'totalcomisones'=>$totalcomisones]);
+        return $pdf->stream('Reporte Ofertas.pdf');
+    }
+    /*END REPORTES OFERTAS PDF*/
 
     /*REPORTES POR CADA USUARIO DEL SISTEMA*/
 

@@ -47,7 +47,7 @@
                                 @if($property->state->name == 'Oferta')
                                 <p class="ofertainmueble">OFERTA</p> 
                                 @endif                             
-                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.$property->sale_price}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}}</p>
+                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.number_format($property->sale_price)}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}}</p>
                                 <a href="{{ route('detailproperty', $property->id ) }}" class="btn btn-primary btnmasinformacion" role="button">Mas información</a>
                                       
                     </div>

@@ -174,6 +174,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+					{!! Form::label('description','Descripción detallada :',['class'=>'col-sm-2 control-label']) !!}
+					<div class="col-sm-10">
+						{!! Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Introduzca la descripcion del inmueble']) !!}
+					</div>
+				</div>
+				<div class="form-group">
 					{!! Form::label('surface_area','Superficie de Área :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
 						{!! Form::text('surface_area',null,['class'=>'form-control','placeholder'=>'Introduzca Superficie de area']) !!}

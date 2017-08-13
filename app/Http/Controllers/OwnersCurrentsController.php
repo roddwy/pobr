@@ -20,7 +20,7 @@ class OwnersCurrentsController extends Controller
      */
     public function index(Request $request)
     {
-        $ownerscurrents = Owner_Current::searchPhoneCell($request->phone)->orderBy('id','DESC')->paginate(5);
+        $ownerscurrents = Owner_Current::searchPhoneCell($request->phone)->orderBy('id','DESC')->paginate(10);
 
         return view('admin.ownerscurrents.index')->with('ownerscurrents',$ownerscurrents);
     }

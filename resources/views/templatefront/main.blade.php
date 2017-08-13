@@ -226,6 +226,16 @@
 		  });
 
 		});
+		$(document).ready(function() {
+		var url = window.location.pathname, 
+		    urlRegExp = new RegExp(url.replace(/\/$/,'') + "$");
+		    $('.nav li a').each(function(){
+		        if(urlRegExp.test(this.href.replace(/\/$/,''))){
+		            $('.nav li').removeClass('active');
+		            $(this).parent('li').addClass('active');
+		        }
+		    });
+		});
 	</script>
 	@yield('mapa')
 </head>

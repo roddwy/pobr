@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Customer;
 
 use Laracasts\Flash\Flash;
+use App\Http\Requests\CustomersRequest;
 
 class CustomersController extends Controller
 {
@@ -51,7 +52,7 @@ class CustomersController extends Controller
         return redirect()->route('customers');
     }
 
-    public function newCustomer(Request $request)
+    public function newCustomer(CustomersRequest $request)
     {
         //dd($request);
         if($request->ajax())
@@ -64,7 +65,7 @@ class CustomersController extends Controller
         
     }
 
-     public function editCustomer(Request $request)
+     public function editCustomer(CustomersRequest $request)
     {
         //dd($request);
         if($request->ajax())

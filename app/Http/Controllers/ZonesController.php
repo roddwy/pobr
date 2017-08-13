@@ -20,7 +20,7 @@ class ZonesController extends Controller
      */
     public function index()
     {
-        $zones = Zone::orderBy('id','DESC')->paginate(2);
+        $zones = Zone::orderBy('id','DESC')->paginate(10);
         return view('admin.zones.index')->with('zones', $zones);
     }
 

@@ -12,7 +12,7 @@ class Property extends Model
     	'admission_date', 'sale_price', 'offer_price', 'comission', 'financing', 'building', 
     	'piso', 'no_dpto', 'referencies', 'antiquily', 'legal_document', 'avaluo', 'delivery_time',
     	'additional_inf', 'bedrooms', 'kitchens', 'bathrooms', 'livingrooms', 'garages', 'asensors',
-    	'suite', 'pantry', 'deskrooms', 'servicesrooms', 'storages', 'others', 'surface_area',
+    	'suite', 'pantry', 'deskrooms', 'servicesrooms', 'storages', 'others','description', 'surface_area',
     	'surface_builder', 'street','lat_map','lng_map', 'zone_id', 'category_id', 'type_property_id', 'owner_current_id', 
     	'user_id', 'state_id'
     ];

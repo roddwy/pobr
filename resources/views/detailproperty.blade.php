@@ -22,6 +22,13 @@
 			margin-bottom: 10px;
 			font-family: 'Anton', sans-serif;			
 		}
+		p{
+			margin-top: 10px;
+			text-align: justify;
+		}
+		.itemsproperty{
+			text-align: justify;
+		}
 		.linavbar{
 			font-family: 'Fjalla One', sans-serif;
 			font-size: 20px;
@@ -87,47 +94,13 @@
 		h3{
 			margin:0px;
 		}
-		/*#bggaleria{
-		    position: fixed;
-		    background: rgba(0,0,0,0.7);
-		    width: 100%;
-		    height: 100%;
-		    top: 0;
-		    left: 0;
-		    z-index: 1;
-		    display: none;
-		}
-*/
+
 		#galeria{
 		    
 		    background-color: grey;
 		    width: 100%;
 		    height: 100%;
-		    /*top: 50%;
-		    left: 50%;*/
-		    /*margin-top: -300px;
-		    margin-left: -250px;*/
 		}
-
-		/*#cerrar{
-		    position: absolute;
-		    margin-left: 220px;
-		    margin-top: 410px;
-		}
-
-		#cerrar a{
-		    color: #dbdce1;
-		    text-decoration: none;
-		    font-family: Helvetica;
-		    padding: 8px;
-		    background-color: #11219b;
-		}
-
-		#cerrar a:hover{
-		    background-color: #c42D3f;
-		    padding: 8px;
-		    color: #000;
-		}*/
 		/*AQUI DEL VISOR DE IMAGENES*/
 		#principal{
 			cursor: pointer;
@@ -240,109 +213,41 @@
 	  <div class="panel-heading">Detalle del Inmueble</div>
 	  <div class="panel-body">	  	
 	  	<div class="row row-detalle">	  		
-	  		<div class="col-md-6">
+	  		<!-- <div class="col-md-6">
 		  		<ul class="list-group">
-				  <li class="list-group-item detalle"><strong>Id </strong>{{$property->id}}</li>
-				  <li class="list-group-item detalle"><strong>Zona </strong>{{$property->zone->name}}</li>
-				  <li class="list-group-item detalle"><strong>Fecha </strong>{{$property->admission_date}}</li>				  
-				</ul>
-			</div>
-			<div class="col-md-6">
-		  		<ul class="list-group">
-				  <li class="list-group-item detalle"><strong>Precio </strong>{{$property->sale_price}} $</li>
+				  <li class="list-group-item detalle"><strong>Cod : </strong>{{$property->id}}</li>
+				  <li class="list-group-item detalle"><strong>Zona : </strong>{{$property->zone->name}}</li>
+				  <li class="list-group-item detalle"><strong>Fecha : </strong>{{$property->admission_date}}</li>
+				  <li class="list-group-item detalle"><strong>Precio : </strong>{{$property->sale_price}} $</li>
 				  <li class="list-group-item detalle"><strong>Sup. Terreno </strong>{{$property->surface_area}}</li>
 				  <li class="list-group-item detalle"><strong>Sup. Contruida </strong>{{$property->surface_builder}}</li>				  
 				</ul>
 			</div>
-	  	</div>
-	  	<button type="button" class="btn btn-info" id="add">Contactarse</button>
-	  	@include('newCustomer')
-
-		<!--MENSAJE MODAL-->
-	  	<div class="modal fade" id="Success" role="dialog">
-		    <div class="modal-dialog">
-		    
-		      <!-- Modal content-->
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">Exito!!!!!!</h4>
-		        </div>
-		        <div class="modal-body">
-		          <p>Muchas gracias por registrar sus datos espere a que nos contactemos con Usted.</p>
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		      </div>
-		      
-		    </div>
-  		</div>	 
-		<!--END MENSAJE MODAL-->
-	  	<script type="text/javascript">
-	  		$.ajaxSetup({
-	  			headers: {
-	  				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-	  			}
-	  		})
-
-	    	$('#add').on('click',function(){
-	    		$('#buscador').modal('show');
-	    	})
-	    	$('#frmCustomer').on('submit',function(e){
-	    		e.preventDefault();
-	    		var form = $('#frmCustomer');
-	    		var formData = form.serialize();
-	    		var url = form.attr('action');
-	    		$.ajax({
-	    			type  : 'post',
-	    			url   : url,
-	    			data  : formData,
-	    			async : true,
-	    			dataType:'json',
-	    			success:function(data){
-	    				console.log(data);
-	    				$('#frmCustomer').trigger('reset');
-	    				$('#first_name').focus();
-	    				//$('.modal-dialog').remove();
-	    				//$('#myModal').modal('show');	    					
-	    				$('#customer').modal('hide'); // or $('#customer').modal('toggle') 
-						$('#Success').modal('show');
-	    			} 
-	    		});
-	    	})
-
-	    	$('#frmEditCustomer').on('submit',function(e){
-	    		e.preventDefault();
-	    		var form = $('#frmEditCustomer');
-	    		var formData = form.serialize();
-	    		var url = form.attr('action');
-	    		$.ajax({
-	    			type  : 'post',
-	    			url   : url,
-	    			data  : formData,
-	    			async : true,
-	    			dataType:'json',
-	    			success:function(data){
-	    				console.log(data);
-	    				$('#frmEditCustomer').trigger('reset');
-	    				$('#first_name').focus();
-	    				//$('.modal-dialog').remove();
-	    				//$('#myModal').modal('show');	    					
-	    				$('#existcustomer').modal('hide'); // or $('#customer').modal('toggle') 
-						$('#Success').modal('show');
-	    			} 
-	    		});
-	    	})
-	    </script>
-	    	
-	  </div>
-	</div>
-	
-	<div class="panel panel-default">
-		<div class="panel-heading">Fotos y mapa</div>
-		<div class="panel-body">
 			<div class="col-md-6">
+		  		<ul class="list-group">
+				  <li class="list-group-item detalle"><strong>Precio : </strong>{{$property->sale_price}} $</li>
+				  <li class="list-group-item detalle"><strong>Sup. Terreno : </strong>{{$property->surface_area}}</li>
+				  <li class="list-group-item detalle"><strong>Sup. Contruida : </strong>{{$property->surface_builder}}</li>
+				  <li class="list-group-item detalle"><strong>Descripcion : </strong>{{$property->description}}</li>				  
+				</ul>
+			</div> -->
+			<p class="itemsproperty"><strong>Codigo: </strong>{{$property->id}} |
+			<strong>Precio: </strong>{{number_format($property->sale_price,0)}} |
+			<strong>Sup. Terreno: </strong>{{$property->surface_area}} | 
+			<strong>Sup. Contruida: </strong>{{$property->surface_builder}} |
+			<strong>Fecha Entrega: </strong>{{$property->delivery_time}} |
+			<strong>Parqueo: </strong>{{$property->garages}} |
+			<strong>Dormitorios: </strong>{{$property->bedrooms}} |
+			<strong>Cocinas: </strong>{{$property->kitchens}} |
+			<strong>Salas: </strong>{{$property->livingrooms}} | 
+			<strong>Baños: </strong>{{$property->bathrooms}}</p>
+			<hr>
+			<strong>Descripción: </strong><br><p>{{$property->description}}</p>
+	  	</div>
+	  	<hr>
+	  	<button type="button" class="btn btn-info" id="add">Contactarse</button>
+	  	<hr>
+		<div class="col-md-6">
 				    <!--<a href="#" class="open">
 			        <img id="thumbnail" height="350" width="100%" 
 			          style="border: 3px solid grey"
@@ -407,8 +312,156 @@
 				    </script>			    
 			    </div>
 			</div>
+
+	  	@include('newCustomer')
+
+		<!--MENSAJE MODAL-->
+	  	<div class="modal fade" id="Success" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Exito!!!!!!</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>Muchas gracias por registrar sus datos espere a que nos contactemos con Usted.</p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+  		</div>	 
+		<!--END MENSAJE MODAL-->
+	  	<script type="text/javascript">
+	  		$.ajaxSetup({
+	  			headers: {
+	  				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	  			}
+	  		})
+
+	    	$('#add').on('click',function(){
+	    		$('#buscador').modal('show');
+	    	})
+	    	$('#frmCustomer').on('submit',function(e){
+	    		e.preventDefault();
+	    		var form = $('#frmCustomer');
+	    		var formData = form.serialize();
+	    		var url = form.attr('action');
+	    		$.ajax({
+	    			type  : 'post',
+	    			url   : url,
+	    			data  : formData,
+	    			async : true,
+	    			dataType:'json',
+	    			success:function(data){
+	    				console.log(data);
+	    				$('#frmCustomer').trigger('reset');
+	    				$('#first_name').focus();
+	    				//$('.modal-dialog').remove();
+	    				//$('#myModal').modal('show');	    					
+	    				$('#customer').modal('hide'); // or $('#customer').modal('toggle') 
+						$('#Success').modal('show');
+	    			},
+	    			error:function(msj){
+	    				console.log(msj.responseJSON.cell_phone);
+	    				$("#msj").html(msj.responseJSON.cell_phone);
+	    				$("#msj-error").fadeIn();
+	    			}
+	    		});
+	    	})
+
+	    	$('#frmEditCustomer').on('submit',function(e){
+	    		e.preventDefault();
+	    		var form = $('#frmEditCustomer');
+	    		var formData = form.serialize();
+	    		var url = form.attr('action');
+	    		$.ajax({
+	    			type  : 'post',
+	    			url   : url,
+	    			data  : formData,
+	    			async : true,
+	    			dataType:'json',
+	    			success:function(data){
+	    				console.log(data);
+	    				$('#frmEditCustomer').trigger('reset');
+	    				$('#first_name').focus();
+	    				//$('.modal-dialog').remove();
+	    				//$('#myModal').modal('show');	    					
+	    				$('#existcustomer').modal('hide'); // or $('#customer').modal('toggle') 
+						$('#Success').modal('show');
+	    			} 
+	    		});
+	    	})
+	    </script>
+	    	
+	  </div>
+	</div>
+	
+	<!-- <div class="panel panel-default">
+		<div class="panel-heading">Fotos y mapa</div>
+		<div class="panel-body">
+			<div class="col-md-6">
+				    
+			            <div id="galeria">
+			               
+			                <img id="principal" height="350px" width="100%" style="border:3px solid grey" src="../images/properties/{{$property->images->first()->name}}">
+			               <br />
+			               <div class="row">
+				               <div id="contenedor">
+				               		<div class="col-md-12 fondo">
+					                   	@foreach($property->images as $imagen)
+											<img src="../images/properties/{{$imagen->name}}" class="img">
+										@endforeach
+									</div>
+				               </div>
+				            </div>
+				            <script>
+				            	$('#principal').click(function(e){
+				            		var img = e.target.src;
+				            		var modal = '<div class="modal_galeria" id="modal_galeria"><img src="' + img + '" class="modal_img"><div class="modal_boton" id="modal_boton">X</div></div>';
+				            		$('body').append(modal);
+				            		$('#modal_boton').click(function(){
+				            			$('#modal_galeria').remove();
+				            		})
+				            	});
+				            	$(document).keyup(function(e){
+				            		if (e.which==27) {
+				            			$('#modal_galeria').remove();
+				            		}
+				            	})
+				            </script>
+			            </div>
+			    
+			</div>    
+    	
+			
+			<div class="col-md-6">
+				<div id="map">
+			    	
+					<script>
+				      function initMap() {
+				        var uluru = {lat: {{$property->lat_map}}, lng: {{$property->lng_map}}};
+				        var map = new google.maps.Map(document.getElementById('map'), {
+				          zoom: 18,
+				          center: uluru
+				        });
+				        var marker = new google.maps.Marker({
+				          position: uluru,
+				          map: map
+				        });
+				      }
+    				</script>
+				    <script async defer
+				    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ8D5zq8vK9PnanQ36WW9-DpwI8vmtyB0&callback=initMap">
+				    </script>			    
+			    </div>
+			</div>
 		</div>		
-    </div>
+    </div> -->
 	<footer>
 		<div class="text-center">
 			<p class="pull-right"><a href="#">Back to top</a></p>

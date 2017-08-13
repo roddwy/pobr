@@ -15,9 +15,9 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');
             $table->date('admission_date');
-            $table->decimal('sale_price');
-            $table->decimal('offer_price');
-            $table->decimal('comission');
+            $table->decimal('sale_price',13,2);
+            $table->decimal('offer_price',13,2);
+            $table->decimal('comission',13,2);
             $table->string('financing');
             $table->string('building');
             $table->string('piso');
@@ -40,6 +40,7 @@ class CreatePropertiesTable extends Migration
             $table->string('servicesrooms');
             $table->string('storages');
             $table->string('others');
+            $table->text('description');
             $table->string('surface_area');
             $table->string('surface_builder');
             $table->string('street');

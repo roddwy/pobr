@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Zone;
+use App\User;
+use DB;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\ZonesRequest;
 
@@ -70,8 +72,13 @@ class ZonesController extends Controller
     public function edit($id)
     {
         $zone = Zone::find($id);
-
-        return view('admin.zones.edit')->with('zone', $zone);
+        $users = User::select('id',DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+                //->join('types_users','types_users.id','=','users.type_user_id')
+                //->where('type_user','=','Asesor de venta')
+                ->orderBy('id','DESC')
+                ->lists('full_name','id');
+        //dd($users);
+        return view('admin.zones.edit')->with('zone', $zone)->with('users', $users);
     }
 
     /**
@@ -81,10 +88,12 @@ class ZonesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ZonesRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $zone = Zone::find($id);
-        $zone->fill($request->all());
+        //$zone->fill($request->all());
+        $zone->name = $request->name;
+        $zone->user_id = $request->user_id;
         $zone->save();
 
         Flash::warning('La zona '.$zone->name.' ha sido actualizada');

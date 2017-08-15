@@ -12,7 +12,8 @@
         "nesbot/carbon": "^1.22",
         "maatwebsite/excel": "~2.1.0",
         "barryvdh/laravel-dompdf": "^0.8.0",
-        "khill/lavacharts" : "3.0.*"
+        "khill/lavacharts" : "3.0.*",
+        "twilio/sdk": "^5.13"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

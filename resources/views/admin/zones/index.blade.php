@@ -12,7 +12,8 @@
 				<table class="table table-striped">
 					<thead>
 						<th>Id</th>
-						<th>Zona</th>
+						<th>Nombre de la Zona</th>
+						<th>Usuario Designado</th>
 						<th>Acción</th>
 					</thead>
 					<tbody>
@@ -20,6 +21,13 @@
 							<tr>
 								<td>{{ $zone->id}}</td>
 								<td>{{ $zone->name }}</td>
+								<td>
+									@if($zone->user->type_user->name == 'Administrador')
+										<span class="btn btn-danger">Zona sin ser Designado</span>
+									@else
+									{{$zone->user->first_name.' '.$zone->user->last_name}}
+									@endif
+								</td>
 								<td>
 									<a href="{{ route('admin.zones.edit', $zone->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
 									<a href="{{ route('admin.zones.destroy', $zone->id) }}" onclick="return confirm('¿Seguro que deseas Eliminarlo?')" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>

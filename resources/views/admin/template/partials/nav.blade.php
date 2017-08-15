@@ -20,16 +20,16 @@
         <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
         <li><a href="{{ route('admin.typesproperties.index') }}">Tipo de propiedad<span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
-        <li><a href="{{ route('admin.zones.index') }}">Zonas</a></li>
+        <li><a href="{{ route('admin.zones.index') }}">Zonas y Asignaciones</a></li>
         <li><a href="{{ route('admin.states.index') }}">Estado de Inmuebles</a></li>
         <li><a href="{{ route('admin.reports') }}">Reportes</a></li>
+        <li><a href="{{ route('admin.sms')}}">Sms</a></li>
       @endif
         <li><a href="{{ route('admin.ownerscurrents.index') }}">Propietarios</a></li>
         <li><a href="{{ route('admin.properties.index') }}">Inmuebles</a></li>        
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">

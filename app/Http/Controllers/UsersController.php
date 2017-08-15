@@ -24,7 +24,9 @@ class UsersController extends Controller
         $users = User::orderBy('id', 'DESC')->paginate(10);
         $users->each(function($users){
             $users->type_user;
+            $users->zones;
         });
+        //dd($users);
         return view('admin.users.index')->with('users',$users);
     }
 

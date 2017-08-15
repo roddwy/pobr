@@ -17,6 +17,7 @@
 						<th>Teléfono</th>
 						<th>Celular</th>
 						<th>Email</th>
+						<th>Zonas Designadas</th>
 						<th>Tipo de Usuario</th>
 						<th>Acción</th>
 					</thead>
@@ -29,6 +30,14 @@
 								<td>{{ $user->phone }}</td>
 								<td>{{ $user->cell_phone }}</td>
 								<td>{{ $user->email }}</td>
+								<td>@if(count($user->zones) == 0)
+										<p class="btn btn-danger">No hay zonas</p>
+									@endif
+									@foreach($user->zones as $zone)
+										{{$zone->name}}<br>
+									@endforeach
+									
+								</td>
 								<td>{{ $user->type_user->name }}</td>
 								<td>
 									<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>

@@ -12,13 +12,13 @@
 		nav.navbar {
     			margin-bottom: -20px;
 			/*background-color: #BB1F35;*/
-			  background: -webkit-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  background: -webkit-linear-gradient(left,#0784F1,#0784F1,#0784F1);
 			  /* For Opera 11.1 to 12.0 */
-			  background: -o-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  background: -o-linear-gradient(left,#0784F1,#0784F1,#0784F1);
 			  /* For Fx 3.6 to 15 */
-			  background: -moz-linear-gradient(left,#0981C0,indigo,#B00C7C);
+			  background: -moz-linear-gradient(left,#0784F1,#0784F1,#0784F1);
 			  /* Standard syntax */
-			  background: linear-gradient(to right,#0981C0,indigo,#B00C7C);
+			  background: linear-gradient(to right,#0784F1,#0784F1,#0784F1);
     			
 		}	
 		/*COLOR TITULO NAVBAR*/

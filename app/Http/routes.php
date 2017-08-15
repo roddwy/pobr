@@ -139,6 +139,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 			'uses'	=>	'ReportsController@reporteofertaspdf',
 			'as'	=>	'admin.reporteofertapdf'
 		]);
+		Route::get('sms', [
+			'uses' => 'SmsController@index',
+			'as'   => 'admin.sms'	
+		]);
+		Route::get('sms/{id}/send', [
+			'uses' => 'SmsController@send',
+			'as'   => 'admin.sms.send'	
+		]);
 	});
 	Route::resource('ownerscurrents', 'OwnersCurrentsController');
 			Route::get('ownerscurrents/{id}/destroy',[

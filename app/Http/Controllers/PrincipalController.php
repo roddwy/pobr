@@ -27,7 +27,7 @@ class PrincipalController extends Controller
         foreach ($states as $state) {
             $statesid[] = array('state_id'=>$state->id);
         }
-        $properties = Property::where('state_id','<>',$statesid[0])->where('state_id','<>',$statesid[1])->orderBy('id','DESC')->paginate(6);
+        $properties = Property::where('state_id','<>',$statesid[0])->where('state_id','<>',$statesid[1])->orderBy('admission_date','DESC')->paginate(6);
         $coordenadas = array();
         foreach ($properties as $property) {
             $coordenadas[]= array('lat'=>$property->lat_map,'lng'=>$property->lng_map,'tipo'=>$property->type_property->name.' en '.$property->category->name,'image'=>$property->images->first()->name, 'idproperty'=>$property->id);
@@ -54,7 +54,7 @@ class PrincipalController extends Controller
 
        $properties = Property::where('state_id','<>',$statesid[0])->where('state_id','<>',$statesid[1])
                     ->BusquedaPrecio2($request->sale_price,$request->sale_price2)->BusquedaZona($request->zone_id)->BusquedaCategoria($request->category_id)
-                    ->BusquedaTipo($request->type_property_id)->orderBy('sale_price', 'ASC')->paginate(4);
+                    ->BusquedaTipo($request->type_property_id)->orderBy('admission_date', 'DESC')->paginate(20);
        //$properties = property::all();
        //dd($properties);
        
@@ -86,6 +86,14 @@ class PrincipalController extends Controller
         dd($properties);*/ 
         //$state = State::orderBy('name', 'ASC')->lists('name', 'id');       
         return view('sale',['properties'=>$properties]);
+    }
+
+    /**
+    *  Function Infomation
+    */
+    public function information()
+    {
+        return view('information');
     }
     /**
      * Show the form for creating a new resource.

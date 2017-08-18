@@ -31,6 +31,7 @@ class UsersRequest extends Request
             'cell_phone'    =>  'unique:users|required|min:2',
             'email'         =>  'unique:users|required|min:2',
             'type_user_id'  =>  'required',
+            'password'      =>  'required|min:8',
         ];
     }
 }

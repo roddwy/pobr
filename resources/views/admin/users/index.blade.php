@@ -31,7 +31,12 @@
 								<td>{{ $user->cell_phone }}</td>
 								<td>{{ $user->email }}</td>
 								<td>@if(count($user->zones) == 0)
-										<p class="btn btn-danger">No hay zonas</p>
+										@if($user->type_user->name == 'Administrador')
+											<p>Admin</p>
+										@else
+											<p class="btn btn-danger">No hay zonas</p>
+										@endif
+										
 									@endif
 									@foreach($user->zones as $zone)
 										{{$zone->name}}<br>

@@ -7,9 +7,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
 	<script src="{{ asset('plugins/jquery/js/jquery-3.2.0.js') }}"></script>
+	<link rel="stylesheet" href="{{asset('plugins/css/font-awesome.min.css')}}">
 	<style>
 		body{
-			background-color: #BECEBB;
+			background-color: #FFF;
 		}
 		h1{
 			color:#fff;
@@ -24,7 +25,7 @@
 		section {
 			margin: 0%;
 			padding: 0%;
-			background-color: rgba(0,0,0,.8);
+			background-color: rgba(0,0,0,.1);
 		}
 
 		.row{
@@ -200,6 +201,9 @@
 			line-height:22px;
 			color: block;
 			text-shadow: 1px 2px 3px grey;
+		}
+		.frmcustomercontac{
+			background-color: #fff;
 		}
 		footer{
 			 margin-top: 20px;

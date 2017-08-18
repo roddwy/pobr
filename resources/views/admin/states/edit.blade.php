@@ -20,7 +20,7 @@
 				<div class="form-group">
 					{!! Form::label('name','Nombre del Estado de Inmueble :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('name',$state->name,['class'=>'form-control','placeholder'=>'Nombre del Estado de Inmueble']) !!}
+						{!! Form::text('name',$state->name,['class'=>'form-control','placeholder'=>'Nombre del Estado de Inmueble','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

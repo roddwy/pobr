@@ -3,7 +3,12 @@
 @section('title','Ofertas')
 
 @section('content') 
-
+<style type="text/css">
+    p{
+        font-family: 'Arial black';
+        font-size: 12px;  
+    }
+</style>
 <hr>
 <div class="row rowtitulo">
 	<div class="col-md-12">
@@ -32,7 +37,7 @@
                                 
                                 <p class="ofertainmueble">OFERTA</p> 
                                                              
-                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.number_format($property->sale_price)}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}}</p>
+                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.number_format($property->sale_price)}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}} <br>Publicado: {{$property->admission_date}}</p>
                                 <a href="{{ route('detailproperty', $property->id ) }}" class="btn btn-primary btnmasinformacion" role="button">Mas información</a>
                                       
                     </div>

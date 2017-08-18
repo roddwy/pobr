@@ -8,6 +8,10 @@
 		document.formulario.action = destino;
 		document.formulario.submit();
 	}
+	function enviarusuario(destino){
+		document.formulariousuario.action = destino;
+		document.formulariousuario.submit();
+	}
 </script>
 <style type="text/css">
 	#graphPie{
@@ -19,7 +23,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
-				<div class="panel-heading">REPORTES INMUEBLES EXCEL</div>
+				<div class="panel-heading">REPORTES INMUEBLES EXCEL Y PDF</div>
 				<div class="panel-body">
 					
 								
@@ -145,10 +149,10 @@
 				</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading">REPORTES POR USUARIOS EXCEL</div>
+			<div class="panel-heading">REPORTES POR USUARIOS EXCEL Y PDF</div>
 			<div class="panel-body">
 
-				{!! Form::model(Request::all(),['route'=>'admin.reporteusuariovendido', 'method'=>'GET', 'class'=>'navbar-form']) !!}
+				{!! Form::model(Request::all(),['method'=>'GET', 'class'=>'navbar-form','name'=>'formulariousuario']) !!}
 						<div class="form-group">
 							<div class="text-center">
 								{!! Form::label('Fecha', 'Seleccione Fecha') !!}							
@@ -156,19 +160,28 @@
 							</div>
 						<div class="btn-group btn-group-justified" role="group" aria-label="...">
 							<div class="btn-group" role="group">
-								<button type="submit" class="btn btn-default">Exportar vendidos de cada usuario</button>
+								<!-- <button type="submit" class="btn btn-default">Exportar vendidos de cada usuario</button> -->
+								<button type="button" class="btn btn-default" name"excel" id="excel" onClick="enviarusuario('{{route('admin.reporteusuariovendido')}}')">Exportar Vendidos de Cada Usuario EXCEL</button>
+							</div>
+							<div class="btn-group" role="group">
+								<!-- <button type="submit" class="btn btn-default">Exportar vendidos de cada usuario</button> -->
+								<button type="button" class="btn btn-default" name"excel" id="excel" onClick="enviarusuario('{{route('admin.reporteusuariovendidopdf')}}')">Exportar Vendidos de Cada Usuario PDF</button>
 							</div>
 						</div>
 						</div>	
 				{!! Form::close() !!}
 				<div class="text-center">
-					<h3>TOTAL INMUEBLES CADAUSUARIO</h3>
+					<h3>TOTAL INMUEBLES CADA USUARIO</h3>
 				</div>
 				<div class="btn-group btn-group-justified" role="group" aria-label="...">
 					<div class="btn-group" role="group">
-					    <a href="{{ route('admin.reporteusuariototal') }}"><button type="button" class="btn btn-default">Exportar total de Inmuebles de Usuarios</button></a>
+						<button type="button" class="btn btn-default" name"excel" id="excel" onClick="enviar('{{route('admin.reporteusuariototal')}}')">Exportar Inmuebles Registrados por Usuarios EXCEL</button>
 					</div>	
-				</div>				
+					<div class="btn-group" role="group">
+					    <a href="{{ route('admin.reporteusuariototalpdf') }}"><button type="button" class="btn btn-default">Exportar Inmuebles Registrados Usuarios PDF</button></a>
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -194,10 +207,7 @@
 		    </div>
 		    <div class="btn-group btn-group-justified" role="group" aria-label="...">
 				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" name"excel" id="excel">Gráfico</button>
-				</div>
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" name"pdf" id="pdf">Gráfico Pdf</button>
+					<button type="button" class="btn btn-default" name"excel" id="excel">Gráfico Vendidos</button>
 				</div>
 			</div>
 		</div>

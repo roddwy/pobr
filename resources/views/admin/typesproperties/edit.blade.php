@@ -20,7 +20,7 @@
 				<div class="form-group">
 					{!! Form::label('name','Nombre del tipo de Propiedad',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('name',$typeproperty->name,['class'=>'form-control','placeholder'=>'Nombre del tipo de propiedad']) !!}
+						{!! Form::text('name',$typeproperty->name,['class'=>'form-control','placeholder'=>'Nombre del tipo de propiedad','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

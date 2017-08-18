@@ -11,6 +11,7 @@
 	<!--SCRIPT PRUEBAS-->
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="{{asset('plugins/css/font-awesome.min.css')}}">
 	<!--FIN DE SCRIPT PRUEBAS-->
 	<style>
 		body{
@@ -231,16 +232,17 @@
 				  <li class="list-group-item detalle"><strong>Descripcion : </strong>{{$property->description}}</li>				  
 				</ul>
 			</div> -->
-			<p class="itemsproperty"><strong>Codigo: </strong>{{$property->id}} |
-			<strong>Precio: </strong>{{number_format($property->sale_price,0)}} |
+			<h3><strong>{{ $property->type_property->name.' en '.$property->category->name }}</strong></h3>
+			<p class="itemsproperty"><strong>COD : </strong>{{$property->id}} |
+			<strong><i class="fa fa-money fa-2x" aria-hidden="true"></i> : </strong>{{number_format($property->sale_price,0)}} |
 			<strong>Sup. Terreno: </strong>{{$property->surface_area}} | 
 			<strong>Sup. Contruida: </strong>{{$property->surface_builder}} |
-			<strong>Fecha Entrega: </strong>{{$property->delivery_time}} |
-			<strong>Parqueo: </strong>{{$property->garages}} |
-			<strong>Dormitorios: </strong>{{$property->bedrooms}} |
-			<strong>Cocinas: </strong>{{$property->kitchens}} |
+			<strong><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i> Entrega: </strong>{{$property->delivery_time}} |
+			<strong><i class="fa fa-car fa-2x" aria-hidden="true"></i> : </strong>{{$property->garages}} |
+			<strong><i class="fa fa-bed fa-2x" aria-hidden="true"></i> : </strong>{{$property->bedrooms}} |
+			<strong><i class="fa fa-cutlery fa-2x" aria-hidden="true"></i> : </strong>{{$property->kitchens}} |
 			<strong>Salas: </strong>{{$property->livingrooms}} | 
-			<strong>Baños: </strong>{{$property->bathrooms}}</p>
+			<strong><i class="fa fa-bath fa-2x" aria-hidden="true"></i> : </strong>{{$property->bathrooms}}</p>
 			<hr>
 			<strong>Descripción: </strong><br><p>{{$property->description}}</p>
 	  	</div>

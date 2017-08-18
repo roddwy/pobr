@@ -30,4 +30,8 @@ class Owner_Current extends Model
     {
         return $query->where('cell_phone', 'LIKE', "%$phone%")->orWhere('phone','LIKE',"%$phone%")->whereNull('deleted_at');
     }
+    public function scopeSearchPhoneCellAsesor($query, $phone)
+    {
+        return $query->where('user_id', '=', \Auth::user()->id)->Where('cell_phone','LIKE',"%$phone%")->whereNull('deleted_at');
+    }
 }

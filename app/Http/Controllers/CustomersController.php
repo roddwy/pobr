@@ -65,7 +65,7 @@ class CustomersController extends Controller
         
     }
 
-     public function editCustomer(CustomersRequest $request)
+     public function editCustomer(Request $request)
     {
         //dd($request);
         if($request->ajax())
@@ -87,7 +87,7 @@ class CustomersController extends Controller
     public function buscadorCustomer(Request $request)
     {
         $term = $request->term; //jquery
-        $data = Customer::where('cell_phone','=',$term)->take(10)->get();
+        $data = Customer::where('cell_phone','=',$term)->take(1)->get();
         $results=array();
         foreach ($data as $key => $v) {
             $results[]=['id'=>$v->id,'first_name'=>$v->first_name,'last_name'=>$v->last_name,'phone'=>$v->phone,'cell_phone'=>$v->cell_phone,'email'=>$v->email,'result'=>'Encontrado'];

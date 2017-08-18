@@ -1,3 +1,15 @@
+<style>
+	.modal-header{
+		background: -webkit-linear-gradient(left,#0981C0,indigo,#B00C7C);
+		/* For Opera 11.1 to 12.0 */
+		background: -o-linear-gradient(left,#0981C0,indigo,#B00C7C);
+		/* For Fx 3.6 to 15 */
+		background: -moz-linear-gradient(left,#0981C0,indigo,#B00C7C);
+		/* Standard syntax */
+	    background: linear-gradient(to right,#0981C0,indigo,#B00C7C); 
+		color: #fff;
+	}
+</style>
 <!--BUSCADOR-->		        	
 		<div class="modal fade" id="buscador" role="dialog">
 		    <div class="modal-dialog">
@@ -10,12 +22,15 @@
 		        </div>
 		        <div class="modal-body">
 		          <header class="panel-heading">
+		          	<label>Por Favor ingrese su numero de celular,</label>
+		          	<label>luego presione la tecla Enter</label>
 		        		<input type="number" title="Introduzca solo numeros con 8 digitos" name="searchcell[]" class="form-control" id="searchcell" placeholder="Buscar por Nro Celular" required/>
 		          </header>
 		        </div>
 		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		        </div>
+
 		      </div>
 		      
 		    </div>
@@ -29,7 +44,7 @@
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">CONTACTO</h4>
+		          <h4 class="modal-title">REGISTRO DE CONTACTO</h4>
 		        </div>
 		        <div class="modal-body">
 		        	<div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
@@ -40,6 +55,8 @@
 		        		<input type="text" name="searchcell[]" class="form-control" id="searchcell" placeholder="Buscar por Nro Celular">
 		        	</header>-->
 		        	<!--END BUSCADOR-->
+		        	<label>No se encontro el numero de celular.</label>
+		        	<label>Por favor ingrese sus datos:</label>
 		          <form action="../newCustomer" method="post" id="frmCustomer">
 		          	<div class="row">
 		          		<div class="col-lg-4 col-sm-4">
@@ -74,13 +91,13 @@
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
-		          				<input type="text" name="property"  id="property" value="{{$property->id}}">
+		          				<input type="text" style="display:none" name="property"  id="property" value="{{$property->id}}">
 		          			</div>		          			
 		          		</div>
 		          	</div>		          	
 		          	<div class="modal-footer">
 		          		<input type="submit" value="Enviar" id="save" class="btn btn-primary">
-		          		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          		<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		        	</div>
 		          </form>
 		        </div>		        
@@ -107,12 +124,11 @@
 		        	<!--END BUSCADOR-->
 		          <form action="../editCustomer" method="post" id="frmEditCustomer">
 		          	<div class="row">
-		          		<div class="col-lg-4 col-sm-4">
-		          			<div class="form-group">
-		          				<label>Id</label>
-		          				<input type="text" name="id" id="existid" placeholder="Id" required/>
+		          		<!-- <div class="col-lg-4 col-sm-4">
+		          			<div class="form-group">		          				
+		          				<input type="text" style="display:none" name="id" id="existid" placeholder="Id" required/>
 		          			</div>		          			
-		          		</div>
+		          		</div> -->
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
 		          				<label>Nombres</label>
@@ -145,13 +161,18 @@
 		          		</div>
 		          		<div class="col-lg-4 col-sm-4">
 		          			<div class="form-group">
-		          				<input type="text" name="property" id="property" value="{{$property->id}}">
+		          				<input type="text" style="display:none" name="property" id="property" value="{{$property->id}}">
+		          			</div>		          			
+		          		</div>
+		          		<div class="col-lg-4 col-sm-4">
+		          			<div class="form-group">		          				
+		          				<input type="text" style="display:none" name="id" id="existid" placeholder="Id" required/>
 		          			</div>		          			
 		          		</div>
 		          	</div>		          	
 		          	<div class="modal-footer">
 		          		<input type="submit" value="Enviar" id="save" class="btn btn-primary">
-		          		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          		<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		        	</div>
 		          </form>
 		        </div>		        

@@ -20,175 +20,175 @@
 				<div class="form-group">
 					{!! Form::label('admission_date','Fecha  de Registro :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::date('admission_date',null,['class'=>'form-control','placeholder'=>'Introduzca la fecha']) !!}
+						{!! Form::date('admission_date',null,['class'=>'form-control','placeholder'=>'Introduzca la fecha','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('sale_price','Precio de Venta :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::number('sale_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de venta']) !!}
+						{!! Form::number('sale_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de venta','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('offer_price','Precio de Oferta :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::number('offer_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de oferta']) !!}
+						{!! Form::number('offer_price',null,['class'=>'form-control','placeholder'=>'Introduzca el precio de oferta','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('comission','Comisión :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::number('comission',null,['class'=>'form-control','placeholder'=>'Introduzca la comisión']) !!}
+						{!! Form::number('comission',null,['class'=>'form-control','placeholder'=>'Introduzca la comisión','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('financing','Financiamiento :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('financing',null,['class'=>'form-control','placeholder'=>'Introduzca financiamiento']) !!}
+						{!! Form::text('financing',null,['class'=>'form-control','placeholder'=>'Introduzca financiamiento','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('building','Edificio :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('building',null,['class'=>'form-control','placeholder'=>'Introduzca edificio']) !!}
+						{!! Form::text('building',null,['class'=>'form-control','placeholder'=>'Introduzca edificio','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('piso','Piso :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('piso',null,['class'=>'form-control','placeholder'=>'Introduzca piso']) !!}
+						{!! Form::text('piso',null,['class'=>'form-control','placeholder'=>'Introduzca piso','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('no_dpto','Numero Departamento :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('no_dpto',null,['class'=>'form-control','placeholder'=>'Introduzca el numero de departamento']) !!}
+						{!! Form::text('no_dpto',null,['class'=>'form-control','placeholder'=>'Introduzca el numero de departamento','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
-					{!! Form::label('referencies','Referencias :',['class'=>'col-sm-2 control-label']) !!}
+					{!! Form::label('referencies','Referencias :',['class'=>'col-sm-2 control-label','required']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('referencies',null,['class'=>'form-control','placeholder'=>'Introduzca referencias']) !!}
+						{!! Form::text('referencies',null,['class'=>'form-control','placeholder'=>'Introduzca referencias','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('antiquily','Antiguedad :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('antiquily',null,['class'=>'form-control','placeholder'=>'Introduzca Antiguedad']) !!}
+						{!! Form::text('antiquily',null,['class'=>'form-control','placeholder'=>'Introduzca Antiguedad','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('legal_document','Documento Legal :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('legal_document',null,['class'=>'form-control','placeholder'=>'Introduzca Documento Legal']) !!}
+						{!! Form::text('legal_document',null,['class'=>'form-control','placeholder'=>'Introduzca Documento Legal','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('avaluo','Avaluo :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('avaluo',null,['class'=>'form-control','placeholder'=>'Introduzca Avaluo']) !!}
+						{!! Form::text('avaluo',null,['class'=>'form-control','placeholder'=>'Introduzca Avaluo','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('delivery_time','Tiempo de Entrega :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('delivery_time',null,['class'=>'form-control','placeholder'=>'Introduzca Tiempo de entrega']) !!}
+						{!! Form::text('delivery_time',null,['class'=>'form-control','placeholder'=>'Introduzca Tiempo de entrega','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('additional_inf','Información Adicional :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('additional_inf',null,['class'=>'form-control','placeholder'=>'Introduzca Información adicional']) !!}
+						{!! Form::text('additional_inf',null,['class'=>'form-control','placeholder'=>'Introduzca Información adicional','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('bedrooms','Cuartos :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('bedrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Cuartos']) !!}
+						{!! Form::text('bedrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Cuartos','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('kitchens','Cocinas :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('kitchens',null,['class'=>'form-control','placeholder'=>'Introduzca Cocinas']) !!}
+						{!! Form::text('kitchens',null,['class'=>'form-control','placeholder'=>'Introduzca Cocinas','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('bathrooms','Baños :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('bathrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Baños']) !!}
+						{!! Form::text('bathrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Baños','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('livingrooms','Salas :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('livingrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Salas']) !!}
+						{!! Form::text('livingrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Salas','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('garages','Garajes :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('garages',null,['class'=>'form-control','placeholder'=>'Introduzca Garajes']) !!}
+						{!! Form::text('garages',null,['class'=>'form-control','placeholder'=>'Introduzca Garajes','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('asensors','Asensores :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('asensors',null,['class'=>'form-control','placeholder'=>'Introduzca Asensores']) !!}
+						{!! Form::text('asensors',null,['class'=>'form-control','placeholder'=>'Introduzca Asensores','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('suite','Suite :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('suite',null,['class'=>'form-control','placeholder'=>'Introduzca Suite']) !!}
+						{!! Form::text('suite',null,['class'=>'form-control','placeholder'=>'Introduzca Suite','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('pantry','Despensa :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('pantry',null,['class'=>'form-control','placeholder'=>'Introduzca Despensa']) !!}
+						{!! Form::text('pantry',null,['class'=>'form-control','placeholder'=>'Introduzca Despensa','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('deskrooms','Escritorio :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('deskrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Escritorio']) !!}
+						{!! Form::text('deskrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Escritorio','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('servicesrooms','Cuartos de Servicio :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('servicesrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Cuartos de Servicio']) !!}
+						{!! Form::text('servicesrooms',null,['class'=>'form-control','placeholder'=>'Introduzca Cuartos de Servicio','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('storages','Almacen :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('storages',null,['class'=>'form-control','placeholder'=>'Introduzca Almacen']) !!}
+						{!! Form::text('storages',null,['class'=>'form-control','placeholder'=>'Introduzca Almacen','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('others','Otros :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('others',null,['class'=>'form-control','placeholder'=>'Introduzca Otros']) !!}
+						{!! Form::text('others',null,['class'=>'form-control','placeholder'=>'Introduzca Otros','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('description','Descripción detallada :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Introduzca la descripcion del inmueble']) !!}
+						{!! Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Introduzca la descripcion del inmueble','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('surface_area','Superficie de Área :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('surface_area',null,['class'=>'form-control','placeholder'=>'Introduzca Superficie de area']) !!}
+						{!! Form::text('surface_area',null,['class'=>'form-control','placeholder'=>'Introduzca Superficie de area','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('surface_builder','Superficie Contruida :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('surface_builder',null,['class'=>'form-control','placeholder'=>'Introduzca Superficie Contruida']) !!}
+						{!! Form::text('surface_builder',null,['class'=>'form-control','placeholder'=>'Introduzca Superficie Contruida','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
@@ -213,13 +213,13 @@
 					<div class="form-group">
 						{!! Form::label('lat_map','Latitud :',['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-10">
-							{!! Form::number('lat_map',null,['id'=>'coordslat','class'=>'form-control','placeholder'=>'Introduzca latitud del mapa','step'=>'any']) !!}
+							{!! Form::number('lat_map',null,['id'=>'coordslat','class'=>'form-control','placeholder'=>'Introduzca latitud del mapa','step'=>'any','required']) !!}
 						</div>
 					</div>
 					<div class="form-group">
 						{!! Form::label('lng_map','Longitud :',['class'=>'col-sm-2 control-label']) !!}
 						<div class="col-sm-10">
-							{!! Form::number('lng_map',null,['id'=>'coordslng','class'=>'form-control','placeholder'=>'Introduzca longitud del mapa','step'=>'any']) !!}
+							{!! Form::number('lng_map',null,['id'=>'coordslng','class'=>'form-control','placeholder'=>'Introduzca longitud del mapa','step'=>'any','required']) !!}
 						</div>
 					</div>
 					<script>
@@ -291,7 +291,7 @@
 				<div class="form-group">
 					{!! Form::label('street','Calle :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('street',null,['class'=>'form-control','placeholder'=>'Introduzca Calle']) !!}
+						{!! Form::text('street',null,['class'=>'form-control','placeholder'=>'Introduzca Calle','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
@@ -345,7 +345,7 @@
 				<div class="form-group">
 					{!! Form::label('image','Imagenes :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::file('image[]',['multiple']) !!}
+						{!! Form::file('image[]',['multiple','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

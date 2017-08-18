@@ -3,27 +3,35 @@
 @section('title','Busquedas')
 
 @section('content') 
+<style type="text/css">
+	p{
+		font-family: 'Arial black';
+      	font-size: 12px;  
+	}
+</style>
 <div class="row rowtitulo">
 	<div class="col-md-12">
 		<h1 class="text-center tituloprincipal">BUSQUEDA PERSONALIZADA</h1>
+		<div class="text-center">
 		{!! Form::model(Request::all(),['route'=>'search', 'method'=>'GET', 'class'=>'navbar-form']) !!}
 			<div class="form-group">
 				<!--{!! Form::label('tipo', 'Tipo') !!}-->
-				{!! Form::select('type_property_id',$types ,null, ['class'=>'form-control busqueda','placeholder'=>'Buscar x tipo']) !!}
+				{!! Form::select('type_property_id',$types ,null, ['class'=>'form-control busqueda','placeholder'=>'Tipo']) !!}
 				<!--{!! Form::label('tipo', 'Categoria') !!}-->
-				{!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'placeholder'=>'Buscar x categoria']) !!}
+				{!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'placeholder'=>'Categoria']) !!}
 				<!--{!! Form::label('tipo', 'Zona') !!}-->
 				{!! Form::select('zone_id', $zones, null, ['class'=>'form-control', 'placeholder'=>'Zona']) !!}
-				{!! Form::label('tipo', 'Precio Min') !!}
-				{!! Form::select('sale_price', ['100'=>'100','1000'=>'1000'],null, ['class'=>'form-control','placeholder'=>'precio']) !!}
+				<!-- {!! Form::label('tipo', 'Precio Min') !!} -->
+				{!! Form::select('sale_price', ['100'=>'100','10000'=>'10,000','50000'=>'50,000','100000'=>'100,000','200000'=>'200,000','400000'=>'400,000','800000'=>'800,000'],null, ['class'=>'form-control','placeholder'=>'Precio Min.']) !!}
 
-				{!! Form::label('tipo', 'Precio Max') !!}
-				{!! Form::select('sale_price2',['10000'=>'10000','50000'=>'50000','100000'=>'100000'],null, ['class'=>'form-control','placeholder'=>'precio']) !!}
+				<!-- {!! Form::label('tipo', 'Precio Max') !!} -->
+				{!! Form::select('sale_price2',['10000'=>'10,000','50000'=>'50,000','100000'=>'100,000','200000'=>'200,000','400000'=>'400,000','800000'=>'800,000','1600000'=>'1,600,000'],null, ['class'=>'form-control','placeholder'=>'Precio Max.']) !!}
 				
 				<!--{!! Form::label('tipo', 'Presione el boton') !!}-->
-				<button type="submit" class="btn btn-default">Busqueda Especial</button>
+				<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
 			</div>	
 		{!! Form::close() !!}
+	</div>
 	</div>
 </div>
 
@@ -47,7 +55,7 @@
                                 @if($property->state->name == 'Oferta')
                                 <p class="ofertainmueble">OFERTA</p> 
                                 @endif                             
-                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.number_format($property->sale_price)}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}}</p>
+                                <p class="infoinmueble">{{$property->type_property->name.' en '.$property->category->name.' a $'.number_format($property->sale_price)}}</p><p class="text-center">{{ $property->zone->name }}, {{ $property->street}} <br>Publicado: {{$property->admission_date}}</p>
                                 <a href="{{ route('detailproperty', $property->id ) }}" class="btn btn-primary btnmasinformacion" role="button">Mas información</a>
                                       
                     </div>

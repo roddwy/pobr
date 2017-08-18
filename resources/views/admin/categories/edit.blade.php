@@ -20,7 +20,7 @@
 				<div class="form-group">
 					{!! Form::label('name','Nombre de la nueva categoria',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('name',$category->name,['class'=>'form-control','placeholder'=>'Nombre de la categoria']) !!}
+						{!! Form::text('name',$category->name,['class'=>'form-control','placeholder'=>'Nombre de la categoria','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

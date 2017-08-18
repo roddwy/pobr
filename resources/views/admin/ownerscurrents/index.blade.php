@@ -29,6 +29,7 @@
 						<th>Email</th>
 						<th>Disponibilidad</th>
 						<th>Cant. Inmuebles Regis.</th>
+						<th>Asesor de Encargado</th>
 						<th>Acción</th>
 					</thead>
 					<tbody>
@@ -40,10 +41,17 @@
 								<td>{{ $ownercurrent->cell_phone }}</td>
 								<td>{{ $ownercurrent->email }}</td>
 								<td>{{ $ownercurrent->availability }}</td>
-								<td>{{ count($ownercurrent->properties) }}</td>
+								<td><!-- {{ count($ownercurrent->properties)}} -->
+									@foreach($ownercurrent->properties as $property)
+										<a href="{{ route('admin.properties.edit', $property->id) }}" class="btn btn-success">Ver</a>
+									@endforeach
+								</td>
+								<td>{{ $ownercurrent->user->first_name.' '.$ownercurrent->user->last_name }}</td>
 								<td>
-									<a href="{{ route('admin.ownerscurrents.edit', $ownercurrent->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
-									<a href="{{ route('admin.ownerscurrents.destroy', $ownercurrent->id) }}" onclick="return confirm('¿Seguro que deseas Eliminarlo?')" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+									@if(\Auth::user()->type_user->name == 'Administrador')
+										<a href="{{ route('admin.ownerscurrents.edit', $ownercurrent->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a>
+										<a href="{{ route('admin.ownerscurrents.destroy', $ownercurrent->id) }}" onclick="return confirm('¿Seguro que deseas Eliminarlo?')" class="btn btn-warning"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+									@endif
 									<a href="{{ route('admin.properties.create', $ownercurrent->id) }}" onclick="return confirm('¿Seguro que desea Agregar un Inmueble al usuario?')"class="btn btn-info">Agregar <span class="glyphicon glyphicon-home"></span></a>
 								</td>
 							</tr>

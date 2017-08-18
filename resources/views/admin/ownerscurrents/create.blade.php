@@ -32,13 +32,13 @@
 				<div class="form-group">
 					{!! Form::label('phone','Teléfono :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('phone',null,['class'=>'form-control','placeholder'=>'No. Teléfono']) !!}
+						{!! Form::text('phone',null,['class'=>'form-control','placeholder'=>'No. Teléfono','title'=>'Debe contener 7 digitos y empezar de 2,3 o 4. Ejemplo 2396919','pattern'=>'^[2|3|4][0-9]{6}','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">
 					{!! Form::label('cell_phone','Celular :',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('cell_phone',null,['class'=>'form-control','placeholder'=>'No. de Celular']) !!}
+						{!! Form::text('cell_phone',null,['class'=>'form-control','placeholder'=>'No. de Celular','title'=>'Debe contener 8 digitos y empezar de 6 o 7. Ejemplo 70192586','pattern'=>'^[6|7][0-9]{7}','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

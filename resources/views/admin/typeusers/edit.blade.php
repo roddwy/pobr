@@ -11,7 +11,7 @@
 				<div class="form-group">
 					{!! Form::label('name','Nombre de tipo de Usuario',['class'=>'col-sm-2 control-label']) !!}
 					<div class="col-sm-10">
-						{!! Form::text('name',$typeuser->name,['class'=>'form-control','placeholder'=>'Nombre de Tipo de Usuario']) !!}
+						{!! Form::text('name',$typeuser->name,['class'=>'form-control','placeholder'=>'Nombre de Tipo de Usuario','required']) !!}
 					</div>
 				</div>
 				<div class="form-group">

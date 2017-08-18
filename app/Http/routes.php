@@ -27,6 +27,10 @@ Route::get('sale',[
 	'uses'	=>	'PrincipalController@sale',
 	'as'	=>	'sale'
 ]);
+Route::get('information',[
+		'uses'	=>	'PrincipalController@information',
+		'as'	=>	'information'
+]);
 Route::get('customers',[
 		'uses'	=>	'CustomersController@create',
 		'as'	=>	'customers'
@@ -138,6 +142,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 		Route::get('reporteofertapdf',[
 			'uses'	=>	'ReportsController@reporteofertaspdf',
 			'as'	=>	'admin.reporteofertapdf'
+		]);
+		Route::get('reporteusuariovendidopdf',[
+			'uses'	=>	'ReportsController@reporteusuariovendidopdf',
+			'as'	=>	'admin.reporteusuariovendidopdf'
+		]);
+		Route::get('reporteusuariototalpdf',[
+			'uses'	=>	'ReportsController@reporteusuariototalpdf',
+			'as'	=>	'admin.reporteusuariototalpdf'
 		]);
 		Route::get('sms', [
 			'uses' => 'SmsController@index',

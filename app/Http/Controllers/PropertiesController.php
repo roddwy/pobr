@@ -23,10 +23,18 @@ class PropertiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $properties = Property::orderBy('id','DESC')->paginate(10);
-        return view('admin.properties.index')->with('properties',$properties);
+        if (\Auth::user()->type_user->name == 'Administrador') {
+            $states = State::orderBy('name','ASC')->lists('name','id');
+            $properties = Property::BusquedaState($request->state_id)->orderBy('id','DESC')->paginate(10);
+            return view('admin.properties.index')->with('properties',$properties)->with('states',$states);
+        }else{
+            $userid = \Auth::user()->id;
+            $properties = Property::where('user_id','=',$userid)->paginate(10);
+            return view('admin.properties.index')->with('properties',$properties);
+        }
+        
     }
 
     /**
@@ -37,10 +45,19 @@ class PropertiesController extends Controller
     public function create($id)
     {
         $ownercurrent = Owner_Current::find($id);
-        $zones = Zone::orderBy('name','ASC')->lists('name','id');
+        //$zones = Zone::orderBy('name','ASC')->lists('name','id');
         $categories = Category::orderBy('name','ASC')->lists('name','id');
         $typesproperties = Type_Property::orderBy('name','ASC')->lists('name','id');
-        $states = State::orderBy('name', 'ASC')->lists('name','id');
+        if (\Auth::user()->type_user->name == 'Administrador') {
+            $zones = Zone::orderBy('name','ASC')->lists('name','id');
+        }else{
+             $zones = Zone::where('user_id','=',\Auth::user()->id)->orderBy('name','ASC')->lists('name','id');
+        }  
+        if (\Auth::user()->type_user->name == 'Administrador') {
+            $states = State::orderBy('name', 'ASC')->lists('name','id');
+        }else{
+            $states = State::where('name','=','Inactivo')->orderBy('name', 'ASC')->lists('name','id');
+        }        
         return view('admin.properties.create')->with('ownercurrent',$ownercurrent)
                 ->with('zones',$zones)->with('categories',$categories)
                 ->with('typesproperties', $typesproperties)->with('states',$states);
@@ -97,8 +114,15 @@ class PropertiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $property = Property::find($id);
+        $zones = Zone::orderBy('name','ASC')->lists('name','id');
+        $categories = Category::orderBy('name','ASC')->lists('name','id');
+        $typesproperties = Type_Property::orderBy('name','ASC')->lists('name','id');
+        $states = State::orderBy('name', 'ASC')->lists('name','id');
+        //dd($property);
+        return view('admin.properties.edit')->with('property',$property)->with('zones',$zones)
+                ->with('categories',$categories)->with('typesproperties',$typesproperties)->with('states',$states);
     }
 
     /**
@@ -110,7 +134,12 @@ class PropertiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $property = Property::find($id);
+        $property->fill($request->all());
+        $property->save();
+
+        Flash::warning('La Propiedad del Propietario '.$property->owner_current->first_name.' '.$property->owner_current->last_name .' ha sido actualizado!');
+        return redirect()->route('admin.properties.index');
     }
 
     /**

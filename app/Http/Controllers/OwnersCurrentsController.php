@@ -20,9 +20,17 @@ class OwnersCurrentsController extends Controller
      */
     public function index(Request $request)
     {
-        $ownerscurrents = Owner_Current::searchPhoneCell($request->phone)->orderBy('id','DESC')->paginate(10);
-
-        return view('admin.ownerscurrents.index')->with('ownerscurrents',$ownerscurrents);
+        if (\Auth::user()->type_user->name == 'Administrador') {
+            $ownerscurrents = Owner_Current::searchPhoneCell($request->phone)->orderBy('id','DESC')->paginate(10);
+            return view('admin.ownerscurrents.index')->with('ownerscurrents',$ownerscurrents);
+        }else{
+            $userid = \Auth::user()->id;
+            //dd($userid);
+            //$ownerscurrents = Owner_Current::where('user_id','=',$userid)->get();
+            $ownerscurrents= Owner_Current::SearchPhoneCellAsesor($request->phone)->orderBy('id','DESC')->paginate(10);
+            return view('admin.ownerscurrents.index')->with('ownerscurrents',$ownerscurrents);
+        }
+        
     }
 
     /**

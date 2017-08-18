@@ -64,7 +64,10 @@ class Property extends Model
 
     public function scopeBusquedaZona($query, $zona)
     {
-        return $query->where('zone_id', 'LIKE',  "%$zona%");
+        if ($zona == '') {
+            return $query->where('zone_id','LIKE',"%$zona%");
+        }
+        return $query->where('zone_id', '=',  $zona);
     }
          
     public function scopeBusquedaCategoria($query, $category)
@@ -83,5 +86,9 @@ class Property extends Model
             return $query->whereBetween('sale_price', ['1', '1000000000']);
         }
         return $query->whereBetween('sale_price', [$precio1, $precio2]);
+    }
+     public function scopeBusquedaState($query, $type)
+    {
+        return $query->where('state_id', 'LIKE',  "%$type%");
     }
 }
